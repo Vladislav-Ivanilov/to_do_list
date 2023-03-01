@@ -1,36 +1,45 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { changeStatus } from '../../redux/toDo/slice';
 import { Modal } from '../Modal/Modal';
 
 export const TodoList = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const dispatch = useDispatch();
   const todos = useSelector(state => state.todos.items);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectIdTodo, setSelectIdTodo] = useState(null);
 
   const toggleModal = event => {
-    if (event.target) {
-      setIsModalVisible(prevState => !isModalVisible);
+    if (event.target.tagName !== 'INPUT') {
+      setIsModalVisible(() => !isModalVisible);
+      setSelectIdTodo(event.currentTarget.id);
     }
   };
 
-  const [checkedState, setCheckedState] = useState(
-    new Array(todos.length).fill(false)
-  );
+  const handelChange = id => {
+    dispatch(changeStatus(id));
+  };
 
   return (
     <ul>
-      {todos.map(({ id, title, description }, index) => {
+      {todos.map(({ id, title, description, completed }, index) => {
         return (
-          <li key={id} onClick={toggleModal}>
+          <li key={id} id={id} onClick={toggleModal}>
             <p>{index + 1}</p>
             <p>{title}</p>
             <p>{description}</p>
-            <input type="checkbox" id={id} name={title} value={title} />
+            <input
+              type="checkbox"
+              id={id}
+              name={title}
+              checked={completed}
+              onChange={() => handelChange(id)}
+            />
           </li>
         );
       })}
       {isModalVisible && (
-        <Modal closeModal={toggleModal} completed={checkedState} />
+        <Modal closeModal={toggleModal} selectIdTodo={selectIdTodo} />
       )}
     </ul>
   );

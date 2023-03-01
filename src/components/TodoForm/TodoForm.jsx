@@ -31,6 +31,7 @@ export const TodoForm = () => {
       id: 'id' + nanoid(),
       title: title,
       description: description,
+      completed: false,
     };
 
     dispatch(addTodo(newTodo));
