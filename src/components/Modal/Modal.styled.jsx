@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-//.color1 {color: #f49be6;}
-//.color2 {color: #f8c1d4;}
-//.color3 {color: #310d17;}
-//.color4 {color: #877676;}
-//.color5 {color: #f3eae8;}
-
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -26,8 +20,8 @@ export const Overlay = styled.div`
 
 export const ModalBlock = styled.div`
   position: absolute;
-  width: 35vw;
-  height: 40vh;
+  width: 80vw;
+  height: 80vh;
   background-color: transparent;
   border-radius: 10px;
   overflow: hidden;
@@ -38,16 +32,12 @@ export const ModalBlock = styled.div`
   align-items: center;
 `;
 
-export const ModalDescription = styled.div`
-  width: 30vw;
-  height: 35vh;
-`;
+export const ModalDescription = styled.div``;
 
 export const Button = styled.button`
   position: absolute;
   left: 30px;
   bottom: 30px;
-
   display: block;
   width: fit-content;
   padding: 0 10px;
@@ -81,4 +71,10 @@ export const Completed = styled.input`
   width: 20px;
   height: 20px;
   margin-left: 10px;
+`;
+
+export const BlockInfo = styled.div``;
+
+export const Description = styled.p`
+  word-wrap: break-word;
 `;

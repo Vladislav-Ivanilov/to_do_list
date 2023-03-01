@@ -8,6 +8,7 @@ import {
   Button,
   Completed,
   CompletedBlock,
+  BlockInfo,
 } from './Modal.styled';
 
 const modalRoot = document.getElementById('modal');
@@ -27,10 +28,10 @@ export const Modal = ({ closeModal, selectIdTodo }) => {
       <ModalBlock>
         <h2>{todo.title}</h2>
         <ModalDescription>
-          <div>
+          <BlockInfo>
             <h3>Description:</h3>
             <p>{todo.description}</p>
-          </div>
+          </BlockInfo>
           <CompletedBlock>
             <p>Status:</p>
             <Completed

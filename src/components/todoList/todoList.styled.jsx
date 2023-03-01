@@ -35,7 +35,7 @@ export const Item = styled.li`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  border-bottom: 1px solid #310d17; ;
+  border-bottom: 1px solid #310d17;
 `;
 
 export const Title = styled.p`
@@ -44,6 +44,11 @@ export const Title = styled.p`
   font-weight: 600;
   margin: 0;
   padding: 15px;
+  white-space: pre-wrap;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Completed = styled.input`
