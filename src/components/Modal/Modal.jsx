@@ -1,7 +1,14 @@
 import { createPortal } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeStatus } from '../../redux/toDo/slice';
-import { Overlay, ModalBlock } from './Modal.styled';
+import {
+  Overlay,
+  ModalBlock,
+  ModalDescription,
+  Button,
+  Completed,
+  CompletedBlock,
+} from './Modal.styled';
 
 const modalRoot = document.getElementById('modal');
 
@@ -19,20 +26,26 @@ export const Modal = ({ closeModal, selectIdTodo }) => {
     <Overlay>
       <ModalBlock>
         <h2>{todo.title}</h2>
-        <div>
-          <h3>Description:</h3>
-          <p>{todo.description}</p>
-          <input
-            type="checkbox"
-            id={todo.id}
-            name={todo.title}
-            checked={todo.completed}
-            onChange={() => handelChange(todo.id)}
-          />
-          <button type="button" onClick={closeModal}>
-            close
-          </button>
-        </div>
+        <ModalDescription>
+          <div>
+            <h3>Description:</h3>
+            <p>{todo.description}</p>
+          </div>
+          <CompletedBlock>
+            <p>Status:</p>
+            <Completed
+              type="checkbox"
+              id={todo.id}
+              name={todo.title}
+              checked={todo.completed}
+              onChange={() => handelChange(todo.id)}
+            />
+          </CompletedBlock>
+
+          <Button type="button" onClick={closeModal}>
+            Close
+          </Button>
+        </ModalDescription>
       </ModalBlock>
     </Overlay>,
     modalRoot

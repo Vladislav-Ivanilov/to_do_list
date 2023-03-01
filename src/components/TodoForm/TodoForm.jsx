@@ -1,8 +1,18 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import { customAlphabet } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/toDo/slice';
 import { object, string } from 'yup';
+
+import {
+  Container,
+  BlockForm,
+  BlockInput,
+  Label,
+  Input,
+  Error,
+  Button,
+} from './TodoForm.styled';
 
 const nanoid = customAlphabet('1234567890', 3);
 
@@ -39,7 +49,7 @@ export const TodoForm = () => {
   };
 
   return (
-    <>
+    <Container>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -47,32 +57,39 @@ export const TodoForm = () => {
       >
         {({ values, handleChange, setFieldValue }) => (
           <Form>
-            <div>
-              <label htmlFor="title">Title:</label>
-              <Field
-                type="text"
-                name="title"
-                id="title"
-                onChange={handleChange}
-                value={values.title || ''}
-              />
-              <ErrorMessage name="title" component="div" />
-            </div>
-            <div>
-              <label htmlFor="description">Description:</label>
-              <Field
-                type="text"
-                name="description"
-                id="description"
-                onChange={handleChange}
-                value={values.description || ''}
-              />
-              <ErrorMessage name="description" component="div" />
-            </div>
-            <button type="submit">Create</button>
+            <BlockForm>
+              <BlockInput>
+                <Label htmlFor="title">Title:</Label>
+                <Input
+                  type="text"
+                  name="title"
+                  id="title"
+                  onChange={handleChange}
+                  value={values.title || ''}
+                  placeholder="Title"
+                  autoComplete="off"
+                />
+                <Error name="title" component="div" />
+              </BlockInput>
+              <BlockInput>
+                <Label htmlFor="description">Description:</Label>
+                <Input
+                  type="text"
+                  name="description"
+                  id="description"
+                  onChange={handleChange}
+                  value={values.description || ''}
+                  placeholder="Description"
+                  autoComplete="off"
+                />
+                <Error name="description" component="div" />
+              </BlockInput>
+
+              <Button type="submit">Create</Button>
+            </BlockForm>
           </Form>
         )}
       </Formik>
-    </>
+    </Container>
   );
 };
